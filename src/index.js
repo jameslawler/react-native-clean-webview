@@ -6,6 +6,8 @@ import {
   WebView
 } from 'react-native';
 import readabilityJs from './readability';
+import cleanHtmlTemplate from './cleanHtmlTemplate';
+import cleanHtmlCss from './cleanHtmlCss';
 
 export default class CleanWebView extends Component {
   constructor(props) {
@@ -13,8 +15,7 @@ export default class CleanWebView extends Component {
 
     this.state = {
       fullHtmlSource: undefined,
-      cleanHtmlSource: undefined,
-      isClean: false
+      cleanHtmlSource: undefined
     };
 
     fetch(this.props.url)
@@ -23,12 +24,13 @@ export default class CleanWebView extends Component {
       .then((readabilityHtml) => {
         this.setState({
           fullHtmlSource: readabilityHtml,
-          cleanHtmlSource: undefined,
-          isClean: false
+          cleanHtmlSource: undefined
         });
       })
       .catch((error) => {
-        console.log('error: ', error);
+        if (this.props.onError) {
+          this.props.onError(error);
+        }
       });
   }
 
@@ -40,10 +42,29 @@ export default class CleanWebView extends Component {
           style={ styles.hiddenWebView }
           source={ {html: this.state.fullHtmlSource} }
           onMessage={ (event) => {
+            if (!event.nativeEvent.data) {
+              if (this.props.onError) {
+                this.props.onError(new Error('Could not clean HTML'));
+              }
+              return;
+            }
+
+            let readabilityArticle = JSON.parse(event.nativeEvent.data);
+            let cleanHtml = '';
+
+            if (this.props.htmlCss) {
+              cleanHtml = cleanHtmlTemplate(this.props.htmlCss, readabilityArticle.title, readabilityArticle.content);
+            } else {
+              cleanHtml = cleanHtmlTemplate(cleanHtmlCss, readabilityArticle.title, readabilityArticle.content);
+            }
+
+            if (this.props.onCleaned) {
+              this.props.onCleaned(readabilityArticle, cleanHtml);
+            }
+
             this.setState({
               fullHtmlSource: undefined,
-              cleanHtmlSource: event.nativeEvent.data,
-              isClean: true
+              cleanHtmlSource: cleanHtml
             });
           } }
           />
@@ -60,7 +81,10 @@ export default class CleanWebView extends Component {
 }
 
 CleanWebView.PropTypes = {
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
+  htmlCss: PropTypes.string,
+  onCleaned: PropTypes.func,
+  onError: PropTypes.func
 }
 
 const styles = StyleSheet.create({
