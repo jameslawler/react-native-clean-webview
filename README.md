@@ -39,7 +39,7 @@ render() {
   return (
     <View>
       <CleanWebView
-        url='http://www.abc.net.au/news/2018-02-14/corporate-tax-australian-companies-havent-paid-in-10-years/9443840'
+        url='http://www.bbc.com/news/science-environment-42690577'
         htmlCss={ css }
         onCleaned={(readabilityArticle, cleanedHtml) => {
           console.log(readabilityArticle); // access to the readability article object
@@ -57,6 +57,8 @@ render() {
 ### `<CleanWebView />`
 
 Component for rendering clean web view.
+
+<img src="https://raw.githubusercontent.com/jameslawler/react-native-clean-webview/master/demo/demo.gif" width="360">
 
 #### Props
 
