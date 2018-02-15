@@ -58,7 +58,7 @@ render() {
 
 Component for rendering clean web view.
 
-<img src="https://raw.githubusercontent.com/jameslawler/react-native-clean-webview/master/demo/demo.gif" width="360">
+<img src="https://raw.githubusercontent.com/jameslawler/react-native-clean-webview/master/demo/demo.png" width="360">
 
 #### Props
 
