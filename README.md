@@ -5,7 +5,7 @@
 
 React Native component that will render a clean version of a web page using the readability algorithm. The component can override the default CSS styling.
 
-The Readability algorithm is from (https://github.com/mozilla/readability)[https://github.com/mozilla/readability] 
+The Readability algorithm is from [https://github.com/mozilla/readability](https://github.com/mozilla/readability)
 
 ## Installation
 
