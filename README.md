@@ -2,7 +2,6 @@
 > React Native component for rendering a clean WebView (using Readability algorithm)
 
 [![npm version](https://badge.fury.io/js/react-native-clean-webview.svg)](https://badge.fury.io/js/react-native-clean-webview)
-[![Build Status](https://api.travis-ci.org/jameslawler/react-native-clean-webview.png?branch=master)](https://api.travis-ci.org/jameslawler/react-native-clean-webview)
 
 React Native component that will render a clean version of a web page using the readability algorithm. The component can override the default CSS styling.
 
