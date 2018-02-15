@@ -1771,7 +1771,7 @@ setTimeout(function() {
   };
 
   var article = new Readability(uri, document).parse();
-  window.postMessage(JSON.stringify(article));
+  window.postMessage(JSON.stringify(article), '*');
 }, 1000);
 
 </script>

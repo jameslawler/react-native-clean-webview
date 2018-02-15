@@ -39,6 +39,7 @@
     "react-native": "^0.53.0"
   },
   "dependencies": {
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.0",
+    "script_sanitize": "^1.2.6"
   }
 }

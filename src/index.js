@@ -8,6 +8,7 @@ import {
 import readabilityJs from './readability';
 import cleanHtmlTemplate from './cleanHtmlTemplate';
 import cleanHtmlCss from './cleanHtmlCss';
+import scriptRemover from 'script_sanitize';
 
 export default class CleanWebView extends Component {
   constructor(props) {
@@ -20,7 +21,11 @@ export default class CleanWebView extends Component {
 
     fetch(this.props.url)
       .then((webResponse) => webResponse.text())
-      .then((webResponseText) => webResponseText.replace("</body>", readabilityJs(this.props.url) + "</body>"))
+      .then((webResponseText) => {
+        let withoutScripts = scriptRemover.sanitize(webResponseText);
+        let readHtml = withoutScripts.replace("</body>", readabilityJs(this.props.url) + "</body>");
+        return readHtml;
+      })
       .then((readabilityHtml) => {
         this.setState({
           fullHtmlSource: readabilityHtml,
@@ -89,7 +94,8 @@ CleanWebView.PropTypes = {
 
 const styles = StyleSheet.create({
   scene: {
-    flex: 1
+    flex: 1,
+    backgroundColor: 'white'
   },
   hiddenWebView: {
     height: 0,
