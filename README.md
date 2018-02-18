@@ -63,7 +63,7 @@ Component for rendering clean web view.
 #### Props
 
 - `url` - the url to clean
-- `htmlCss` - custom css that is used with the clean html
+- `htmlCss` - custom css that is used with the clean html (view the returned `cleanHtml` property from the `onCleaned` callback to see what styles you can customize. These styles are consistent for all URLs)
 - `onCleaned` - a callback function that returns a `readabilityArticle` and the `cleanHtml`
 - `onError` - a callback function that returns an `error` object when a problem occurs while cleaning the web page
 

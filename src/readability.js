@@ -24,6 +24,13 @@ export default function(url) {
  * available at: http://code.google.com/p/arc90labs-readability
  */
 
+/*
+ * Amended By James Lawler (2018)
+ * 
+ * Added callback after one second to run the Readability algorithm against
+ * the current page
+ */
+
 /**
  * Public constructor.
  * @param {Object}       uri     The URI descriptor object.
