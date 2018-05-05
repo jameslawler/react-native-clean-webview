@@ -85,7 +85,7 @@ export default class CleanWebView extends Component {
   }
 }
 
-CleanWebView.PropTypes = {
+CleanWebView.propTypes = {
   url: PropTypes.string.isRequired,
   htmlCss: PropTypes.string,
   onCleaned: PropTypes.func,
