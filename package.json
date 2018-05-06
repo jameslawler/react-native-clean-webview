@@ -1,6 +1,6 @@
 {
   "name": "react-native-clean-webview",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Native component for rendering a clean WebView (using Readability algorithm)",
   "main": "src/index.js",
   "scripts": {
